@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MauiCrash.Models"
+             x:Class="MauiCrash.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="PassengerDataTemplate" x:DataType="models:Passenger">
+                <Grid Margin="0,2" Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Margin="5,0,0,0" Text="First Name" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Start"/>
+                    <Label Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="Last Name" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Start"/>
+                    <Label Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Text="Absent" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Start"/>
+                    <Label Grid.Column="3" Grid.Row="0" Margin="5,0,0,0" Text="On" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Start"/>
+                    <Label Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" Text="Off" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Start"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Text="{Binding First_Name}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Start"/>
+                    <Label Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Last_Name}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Start"/>
+                    <Switch Grid.Column="2" Grid.Row="1" IsToggled="{Binding Absent}" HorizontalOptions="Center" VerticalOptions="Start"/>
+                    <Switch Grid.Column="3" Grid.Row="1" IsToggled="{Binding On}" HorizontalOptions="Center" VerticalOptions="Start"/>
+                    <Switch Grid.Column="4" Grid.Row="1" IsToggled="{Binding Off}" HorizontalOptions="Center" VerticalOptions="Start"/>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <CollectionView x:Name="PassengerCollectionView" ItemsSource="{Binding Passengers}" ItemTemplate="{StaticResource PassengerDataTemplate}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectionMode="Single" SelectionChanged="OnItemSelected"/>
+    </Grid>
+
+</ContentPage>
